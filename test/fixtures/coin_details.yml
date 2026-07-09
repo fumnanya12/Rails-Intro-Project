@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  description: MyString
+  website_url: MyString
+  no_market: 1
+  no_exchange: 1
+  change: 9.99
+
+two:
+  uuid: MyString
+  description: MyString
+  website_url: MyString
+  no_market: 1
+  no_exchange: 1
+  change: 9.99

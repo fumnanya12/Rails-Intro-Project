@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uuid: MyString
+  name: MyString
+  symbol: MyString
+  rank: 1
+  price: 9.99
+  market_cap: 9.99
+  volume_24h: 9.99
+  change_24: 9.99
+  icon_url: MyString
+  tier: 1
+  color: MyString
+
+two:
+  uuid: MyString
+  name: MyString
+  symbol: MyString
+  rank: 1
+  price: 9.99
+  market_cap: 9.99
+  volume_24h: 9.99
+  change_24: 9.99
+  icon_url: MyString
+  tier: 1
+  color: MyString
