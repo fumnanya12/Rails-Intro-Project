@@ -1,0 +1,25 @@
+ h1 {
+    color: blue;
+  }
+
+  .menu {
+    background-color: #f4f4f4;
+    padding: 5px;
+    display: flex;
+  }
+
+  .menu ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    list-style-type: none;
+    align-items: center;
+   
+  }
+  .menu ul li{
+    padding-left: 10px;
+  }
+
+  .menu ul li a{
+    text-decoration: none;
+  }

@@ -1,0 +1,2 @@
+module TrendingCoinsHelper
+end

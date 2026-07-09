@@ -8,3 +8,8 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+@import "coins.css";
+
+body {
+  font-family: Arial, sans-serif;
+}

@@ -1,0 +1,24 @@
+<nav>
+<div class="menu">
+<h3> Crypto coin</h3>
+<ul>
+<li><%= link_to "Home", root_path %></li>
+<li><%= link_to "Coins", coins_path %></li>
+<li><%= link_to "Trending Coins", trending_coins_path %></li>
+</ul>
+</div>
+
+</nav>
+<h1> About page</h1>
+<p>The primary data source for this project is the Coinranking API, which provides real-time cryptocurrency market data.The application will retrieve data from multiple endpoints, including the List of Coins, Trending Coins, and Coin Price endpoints.These endpoints provide up-to-date information about cryptocurrencies, allowing users to browse available coins, discover currently trending cryptocurrencies, and view the latest market prices. The API returns data in JSON format, where each response contains objects representing individual cryptocurrencies with various market attributes.
+</p>
+<p>
+The List of Coins dataset will serve as the primary dataset for the application. Each coin contains a unique identifier (UUID), symbol, name, rank, price, market capitalization, 24-hour trading volume, price change percentage, icon URL, and other market statistics. 
+This dataset will populate the main cryptocurrency listing displayed to users.
+</p>
+The Trending Coins dataset provides cryptocurrencies that are currently receiving increased market attention. The response contains many of the same fields as the general coin list, including the coin UUID, name, symbol, rank, and current price.  Since both datasets share the same unique coin identifier (UUID), the trending data can be directly related to the complete list of coins. This allows the application to highlight trending cryptocurrencies while avoiding duplicate records.
+<p>
+The Coin Price endpoint provides the current or historical price of a selected cryptocurrency based on its UUID and, optionally, a timestamp. When a user selects a cryptocurrency from either the coin list or trending list, the application uses the UUID to retrieve the latest price information. This creates a one-to-one relationship between the selected coin and its corresponding price data.
+</p>
+
+<h3>ERD DIAGRAM </h3>
