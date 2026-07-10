@@ -1,2 +1,39 @@
-<h1>TrendingCoins#index</h1>
-<p>Find me in app/views/trending_coins/index.html.erb</p>
+<nav>
+<div class="menu">
+<h3> Crypto coin</h3>
+<ul>
+<li><%= link_to "Home", root_path %></li>
+<li><%= link_to "Coins", coins_path %></li>
+<li><%= link_to "Trending Coins", trending_coins_path %></li>
+<li><%= link_to "About", about_coins_path %></li>
+
+</ul>
+</div>
+
+</nav>
+<h2>Top 50 Trending Coins </h2>
+
+<table class="crypto_table">
+  <tr>
+    <th>#</th>
+    <th>Coins</th>
+    <th>Live Price</th>
+    <th>Market Cap</th>
+  </tr>
+
+   <% @trendingcoins.each do |tcoin| %>
+    <tr>
+      <td><%= tcoin.rank %></td>
+      <td><%= tcoin.name %>(<%= tcoin.symbol %>)</td>
+      <td>$<%= sprintf('%.2f', tcoin.price) %></td>
+      <td>$<%= sprintf('%.2f', tcoin.market_cap)%></td>
+    </tr>
+  <% end %>
+  <tr>
+
+
+  
+</table>
+
+
+

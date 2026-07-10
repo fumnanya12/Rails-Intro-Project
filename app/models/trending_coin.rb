@@ -1,4 +1,3 @@
 class TrendingCoin < ApplicationRecord
-    belongs_to :coin
-
+      validates :uuid, presence: true, uniqueness: true
 end
