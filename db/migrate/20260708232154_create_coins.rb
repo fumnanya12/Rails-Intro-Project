@@ -1,7 +1,7 @@
 class CreateCoins < ActiveRecord::Migration[8.1]
   def change
-    create_table :coins do |t|
-      t.string :uuid
+    create_table :coins, id: false do |t|
+      t.string :uuid, null: false, primary_key: true
       t.string :name
       t.string :symbol
       t.integer :rank
