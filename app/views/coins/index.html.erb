@@ -3,7 +3,7 @@
 <h3> Crypto coin</h3>
 <ul>
 <li><%= link_to "Home", root_path %></li>
-<li><%= link_to "Coins", coins_path %></li>
+<li><%= link_to "Coins", allCoins_coins_path %></li>
 <li><%= link_to "Trending Coins", trending_coins_path %></li>
 <li><%= link_to "About", about_coins_path %></li>
 
@@ -11,29 +11,42 @@
 </div>
 
 </nav>
-<h2>Top 50 Coins by Market Cap</h2>
+<h2>Enter the coin name</h2>
 
-<table class="crypto_table">
-  <tr>
-    <th>#</th>
-    <th>Coins</th>
-    <th>Live Price</th>
-    <th>Market Cap</th>
-  </tr>
 
-   <% @coins.each do |coin| %>
-    <tr>
-      <td><%= coin.rank %></td>
-      <td><%= coin.name %>(<%= coin.symbol %>)</td>
-      <td>$<%= sprintf('%.2f', coin.price) %></td>
-      <td>$<%= sprintf('%.2f', coin.market_cap)%></td>
-    </tr>
+<%= form_with url: coins_path, method: :get do |form| %>
+  <%= form.label :query, "Search for a coin" %>
+
+  <%= form.text_field :query,
+                      value: params[:query],
+                      placeholder: "Search by name or symbol" %>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<div class="coins">
+  <% if @coins.any? %>
+    <% @coins.each do |coin| %>
+      <div class="coin-card">
+        <h2><%= coin.name %> (<%= coin.symbol %>)</h2>
+
+        <p>Rank: <%= coin.rank %></p>
+        <p>Price: <%= coin.price %></p>
+        <p>UUID: <%= coin.uuid %></p>
+
+
+        <% if coin.coin_detail.present? %>
+          <%= link_to "View Details",
+                      coin_detail_path(coin_uuid: coin.uuid) %>
+        <% else %>
+          <p>Details are not available.</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No coins matched your search.</p>
   <% end %>
-  <tr>
-
-
-  
-</table>
+</div>
 
 
 

@@ -11,7 +11,7 @@
 </div>
 
 </nav>
-<h2>Top 50 Trending Coins </h2>
+<h2>Top 50 Coins by Market Cap</h2>
 
 <table class="crypto_table">
   <tr>
@@ -21,12 +21,12 @@
     <th>Market Cap</th>
   </tr>
 
-   <% @trendingcoins.each do |tcoin| %>
+   <% @coins.each do |coin| %>
     <tr>
-      <td><%= tcoin.rank %></td>
-      <td><%= tcoin.name %>(<%= tcoin.symbol %>)</td>
-      <td>$<%= sprintf('%.2f', tcoin.price) %></td>
-      <td>$<%= sprintf('%.2f', tcoin.market_cap)%></td>
+      <td><%= coin.rank %></td>
+      <td><%= coin.name %>(<%= coin.symbol %>)</td>
+      <td>$<%= sprintf('%.2f', coin.price) %></td>
+      <td>$<%= sprintf('%.2f', coin.market_cap)%></td>
     </tr>
   <% end %>
   <tr>

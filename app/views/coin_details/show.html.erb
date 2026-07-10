@@ -1,0 +1,51 @@
+<h1><%= @coin.name %></h1>
+
+<p>
+  <strong>Symbol:</strong>
+  <%= @coin.symbol %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @coin.rank %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @coin.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @coin_detail.description %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+
+  <% if @coin_detail.website_url.present? %>
+    <%= link_to @coin_detail.website_url,
+                @coin_detail.website_url,
+                target: "_blank",
+                rel: "noopener" %>
+  <% else %>
+    Not available
+  <% end %>
+</p>
+
+<p>
+  <strong>Number of Markets:</strong>
+  <%= @coin_detail.no_market %>
+</p>
+
+<p>
+  <strong>Number of Exchanges:</strong>
+  <%= @coin_detail.no_exchange %>
+</p>
+
+<p>
+  <strong>Change:</strong>
+  <%= @coin_detail.change %>%
+</p>
+
+<%= link_to "Back to Coins", coins_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "coin_details/show"
   get "trending_coins/index"
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,8 +19,11 @@ Rails.application.routes.draw do
   resources :coins, only: [:index, :show] do
     collection do
       get :about
+      get :allCoins
     end
   end
     resources :trending_coins, only: [:index]
-
+  resources :coin_details,
+            only: [:show],
+            param: :coin_uuid
 end

@@ -10,7 +10,11 @@
 # db/seeds.rb
 require "net/http"
 require "json"
+
+CoinDetail.destroy_all
+TrendingCoin.destroy_all
 Coin.destroy_all
+
 
 def fetch_coins(limit, offset)
   url = URI("https://api.coinranking.com/v2/coins?limit=#{limit}&offset=#{offset}")
@@ -48,7 +52,7 @@ end
 puts "#{Coin.count} coins imported."
 
 ##trending coins
-TrendingCoin.destroy_all
+#TrendingCoin.destroy_all
 
 def fetch_trendingcoins(limit, offset)
   url = URI("https://api.coinranking.com/v2/coins/trending?limit=#{limit}&offset=#{offset}")
@@ -84,3 +88,50 @@ end
 end
 
 puts "#{TrendingCoin.count} coins imported."
+
+
+#CoinDetail.destroy_all
+Coin.find_each do |coin|
+  uri = URI("https://api.coinranking.com/v2/coin/#{coin.uuid}")
+
+  request = Net::HTTP::Get.new(uri)
+  request["x-access-token"] = ENV["COINRANKING_API_KEY"]
+
+  response = Net::HTTP.start(
+    uri.hostname,
+    uri.port,
+    use_ssl: true
+  ) do |http|
+    http.request(request)
+  end
+
+  unless response.is_a?(Net::HTTPSuccess)
+    puts "Could not retrieve details for #{coin.name}"
+    sleep 1
+    next
+  end
+
+  response_data = JSON.parse(response.body)
+  coin_data = response_data.dig("data", "coin")
+
+  unless coin_data
+    puts "No detail data returned for #{coin.name}"
+    sleep 1
+    next
+  end
+
+  detail = CoinDetail.find_or_initialize_by(
+    coin_uuid: coin.uuid
+  )
+
+  detail.update!(
+    description: coin_data["description"],
+    website_url: coin_data["websiteUrl"],
+    no_market: coin_data["numberOfMarkets"],
+    no_exchange: coin_data["numberOfExchanges"],
+    change: coin_data["change"]
+  )
+
+  puts "Saved details for #{coin.name}"
+    sleep 0.3
+end

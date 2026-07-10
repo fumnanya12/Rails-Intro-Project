@@ -1,0 +1,2 @@
+module CoinDetailsHelper
+end
