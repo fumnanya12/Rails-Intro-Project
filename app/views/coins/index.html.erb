@@ -13,3 +13,28 @@
 
 </nav>
 <h2>Top 50 Coins by Market Cap</h2>
+
+<table class="crypto_table">
+  <tr>
+    <th>#</th>
+    <th>Coins</th>
+    <th>Live Price</th>
+    <th>Market Cap</th>
+  </tr>
+
+   <% @coins.each do |coin| %>
+    <tr>
+      <td><%= coin.rank %></td>
+      <td><%= coin.name %>(<%= coin.symbol %>)</td>
+      <td>$<%= sprintf('%.2f', coin.price) %></td>
+      <td>$<%= sprintf('%.2f', coin.market_cap)%></td>
+    </tr>
+  <% end %>
+  <tr>
+
+
+  
+</table>
+
+
+

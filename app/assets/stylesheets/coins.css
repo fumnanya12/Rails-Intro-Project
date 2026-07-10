@@ -23,3 +23,17 @@
   .menu ul li a{
     text-decoration: none;
   }
+
+  .crypto_table {
+     width: 900px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 30px;
+
+  }
+
+  .crypto_table th, td{
+     border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
