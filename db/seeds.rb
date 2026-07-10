@@ -7,3 +7,42 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+require "net/http"
+require "json"
+Coin.destroy_all
+
+def fetch_coins(limit, offset)
+  url = URI("https://api.coinranking.com/v2/coins?limit=#{limit}&offset=#{offset}")
+
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+  request["x-access-token"] = ENV["COINRANKING_API_KEY"]
+
+  response = http.request(request)
+  JSON.parse(response.body)
+end
+
+[0, 100].each do |offset|
+  data = fetch_coins(100, offset)
+
+  data["data"]["coins"].each do |coin|
+    Coin.create!(
+      uuid: coin["uuid"],
+      name: coin["name"],
+      symbol: coin["symbol"],
+      rank: coin["rank"],
+      price: coin["price"],
+      market_cap: coin["marketCap"],
+      volume_24h: coin["24hVolume"],
+      change_24: coin["change"],
+      icon_url: coin["iconUrl"],
+      tier: coin["tier"],
+      color: coin["color"]
+    )
+  end
+end
+
+puts "#{Coin.count} coins imported."
