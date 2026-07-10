@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_08_232521) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_10_031219) do
   create_table "coin_details", force: :cascade do |t|
     t.decimal "change"
     t.datetime "created_at", null: false
@@ -39,10 +39,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_08_232521) do
   end
 
   create_table "trending_coins", force: :cascade do |t|
+    t.decimal "change_24h"
+    t.string "color"
     t.datetime "created_at", null: false
-    t.integer "trend_rank"
-    t.integer "trending_id"
+    t.string "icon_url"
+    t.decimal "market_cap"
+    t.string "name"
+    t.decimal "price"
+    t.integer "rank"
+    t.string "symbol"
+    t.integer "tier"
     t.datetime "updated_at", null: false
     t.string "uuid"
+    t.decimal "volume_24h"
+    t.index ["uuid"], name: "index_trending_coins_on_uuid", unique: true
   end
 end
